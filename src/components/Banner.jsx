@@ -19,7 +19,7 @@ export const Banner = () => {
             </h1>
             <p className="type-p">
               I am a Full Stack Software Engineer holding a BSc (Hons) in
-              Software Engineering from the University of Plymouth[cite: 1].
+              Software Engineering from the University of Plymouth.
               With hands-on professional experience building modern web
               applications, scalable APIs, and IoT integrations, I specialize in
               turning complex problems into clean, efficient digital solutions.
