@@ -98,7 +98,29 @@ nav.navbar.scrolled {
   background-color: var(--bg);
 }
 nav.navbar a.navbar-brand {
-    width: 9%;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--nav-fg);
+}
+
+nav.navbar a.navbar-brand img {
+  width: 40px;
+  height: 40px;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 21px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+/* Between these widths the menu needs the room, so only the mark shows */
+@media (min-width: 992px) and (max-width: 1399px) {
+  .brand-name {
+    display: none;
+  }
 }
 nav.navbar .navbar-nav .nav-link.navbar-link {
   font-weight: 400;
@@ -453,10 +475,6 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 .social-icon a:hover svg {
   color: var(--icon-hover);
-}
-
-nav.navbar a.navbar-brand {
-  min-width: 70px;
 }
 
 @media (max-width: 1199px) {
@@ -1149,10 +1167,6 @@ nav.navbar {
 
 :root[data-theme="light"] nav.navbar.scrolled {
   box-shadow: 0 2px 16px rgba(20, 20, 40, 0.08);
-}
-
-:root[data-theme="light"] nav.navbar .navbar-brand img {
-  filter: brightness(0.55) saturate(1.6);
 }
 
 body {

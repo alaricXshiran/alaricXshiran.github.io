@@ -63,7 +63,8 @@ export const NavBar = () => {
     >
       <Container>
         <Navbar.Brand href="#home">
-          <img src={logo} alt="Alaric Shiran logo" />
+          <img src={logo} alt="" width="40" height="40" />
+          <span className="brand-name">{profile.name}</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav">
           <span className="navbar-toggler-icon"></span>
