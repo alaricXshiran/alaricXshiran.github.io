@@ -238,20 +238,37 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .banner {
   margin-top: 0;
   padding: 260px 0 100px 0;
-  color: #fff;
-  background-color: #1b1230;
-  background-image: linear-gradient(rgba(10, 8, 20, 0.35), rgba(10, 8, 20, 0.35)), url('./assets/img/banner-bg.webp');
+  color: var(--text);
+  background-color: var(--bg);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* The forest picture sits behind the banner, faded so the theme colour shows through */
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url('./assets/img/banner-bg.webp');
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
+  opacity: var(--banner-img-opacity);
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  transition: opacity 0.3s ease;
 }
 
 .banner .tagline {
   font-weight: 700;
   letter-spacing: 0.8px;
   padding: 8px 10px;
-  background: linear-gradient(90.21deg, rgba(255, 0, 0, 0.5) -5.91%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 255, 0.5) 111.58%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-border);
   font-size: 20px;
   margin-bottom: 16px;
   display: inline-block;
@@ -271,7 +288,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 .wrap {
   display: inline-block;
-  border-right: 2px solid rgba(255, 255, 255, 0.75); /* Simulates a typing cursor */
+  border-right: 2px solid var(--text); /* Simulates a typing cursor */
   white-space: nowrap;
   overflow: hidden;
   animation: typing 3.5s steps(40, end), blinkCursor 0.75s step-end infinite;
@@ -305,7 +322,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 /* New animation for <p> element */
 .banner p {
-  color: #ffffff;
+  color: var(--text);
   font-size: 18px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
@@ -385,7 +402,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .banner-btn {
-  color: #fff;
+  color: var(--text);
   font-weight: 700;
   font-size: 20px;
   letter-spacing: 0.8px;
@@ -396,7 +413,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .banner-btn:hover {
-  color: #fff;
+  color: var(--text);
 }
 
 .banner-btn svg {
@@ -409,14 +426,14 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 .banner-btn-outline {
   padding: 14px 26px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border-strong);
   font-size: 18px;
   transition: 0.3s ease-in-out;
 }
 
 .banner-btn-outline:hover {
-  background-color: #fff;
-  color: #121212;
+  background-color: var(--text);
+  color: var(--bg);
 }
 
 .banner-btn-outline:hover svg {
@@ -1000,6 +1017,9 @@ a.contact-item:hover {
   --contact-lead: #e2e2e2;
   --contact-item: rgba(18, 18, 18, 0.55);
   --glow-opacity: 0.8;
+  --banner-img-opacity: 0.45;
+  --tag-bg: linear-gradient(90.21deg, rgba(255, 0, 0, 0.5) -5.91%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 255, 0.5) 111.58%);
+  --tag-border: rgba(255, 255, 255, 0.5);
 
   /* Icons and buttons follow the theme by default */
   --icon-fg: var(--text);
@@ -1032,32 +1052,22 @@ a.contact-item:hover {
   --contact-lead: #3b3b45;
   --contact-item: rgba(255, 255, 255, 0.8);
   --glow-opacity: 0.3;
+  --banner-img-opacity: 0.32;
+  --tag-bg: linear-gradient(90.21deg, #b3261e -5.91%, #26262e 50%, #2b2bd1 111.58%);
+  --tag-border: transparent;
 }
 
-/* The navbar sits on the banner image until you scroll, so it stays white there */
+/* The navbar follows the theme, both over the banner and after scrolling */
 nav.navbar {
-  --nav-fg: #ffffff;
-  --nav-hover: #121212;
-  --icon-fg: #ffffff;
-  --icon-hover: #121212;
-  --icon-bg: rgba(217, 217, 217, 0.1);
-  --icon-border: rgba(255, 255, 255, 0.5);
-}
-
-nav.navbar.scrolled {
   --nav-fg: var(--text);
   --nav-hover: var(--bg);
-  --icon-fg: var(--text);
-  --icon-hover: var(--bg);
-  --icon-bg: var(--icon-bg-theme);
-  --icon-border: var(--border-strong);
 }
 
 :root[data-theme="light"] nav.navbar.scrolled {
   box-shadow: 0 2px 16px rgba(20, 20, 40, 0.08);
 }
 
-:root[data-theme="light"] nav.navbar.scrolled .navbar-brand img {
+:root[data-theme="light"] nav.navbar .navbar-brand img {
   filter: brightness(0.55) saturate(1.6);
 }
 
@@ -1095,8 +1105,8 @@ body {
 }
 
 @media (max-width: 767px) {
-  .banner {
-    background-image: linear-gradient(rgba(10, 8, 20, 0.35), rgba(10, 8, 20, 0.35)), url('./assets/img/banner-bg-sm.webp');
+  .banner::before {
+    background-image: url('./assets/img/banner-bg-sm.webp');
   }
 }
 
