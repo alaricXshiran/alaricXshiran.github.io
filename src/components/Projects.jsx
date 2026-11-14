@@ -1,41 +1,57 @@
+import { Github, BoxArrowUpRight } from "react-bootstrap-icons";
 import colorSharp from "../assets/img/color-sharp.png";
+import { projects, profile } from "../data";
 
 export const Projects = () => {
-  const projectList = [
-    {
-      title: "GarmentPulse IoT",
-      description: "An industrial IoT tracking system powered by ESP-32 microcontrollers and hardware sensors paired with a PHP/SQL web dashboard to monitor sewing machine operator efficiency and streamline garment factory floor analytics.",
-      tech: "ESP-32, PHP, SQL, IoT Sensors",
-      link: "#"
-    },
-    {
-      title: "LegalAI",
-      description: "A full-stack web application integrated with the Gemini AI API and a subscription tier designed to answer queries regarding the Sri Lankan legal landscape.",
-      tech: "MongoDB, Express, React, Node, Gemini API",
-      link: "#"
-    },
-    {
-      title: "Garbage Spotting & Collecting System",
-      description: "A community-focused mapping platform utilizing the Google Maps API, PHP, and SQL to coordinate city cleanup operations and optimize team dispatch routes.",
-      tech: "Google Maps API, PHP, SQL",
-      link: "#"
-    }
-  ];
-
   return (
-    <section className="projects" id="projects">
+    <section className="section projects" id="projects">
       <div className="container">
         <h2>Projects</h2>
-        <p>Explore some of my core full-stack, IoT, and system projects.</p>
-        
+        <p className="section-lead">
+          Backend APIs, full stack web apps and embedded devices I&apos;ve
+          built.
+        </p>
+
         <div className="project-grid">
-          {projectList.map((project, index) => (
-            <div className="project-card" key={index}>
+          {projects.map((project) => (
+            <article className="project-card" key={project.title}>
+              <span className="project-category">{project.category}</span>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
-              <span className="project-tech">{project.tech}</span>
-            </div>
+              <div className="chips">
+                {project.tech.map((t) => (
+                  <span className="chip" key={t}>
+                    {t}
+                  </span>
+                ))}
+              </div>
+              {(project.code || project.demo) && (
+                <div className="project-links">
+                  {project.code && (
+                    <a href={project.code} target="_blank" rel="noreferrer">
+                      <Github /> Code
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a href={project.demo} target="_blank" rel="noreferrer">
+                      <BoxArrowUpRight /> Live demo
+                    </a>
+                  )}
+                </div>
+              )}
+            </article>
           ))}
+        </div>
+
+        <div className="section-cta">
+          <a
+            className="outline-btn"
+            href={profile.github}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Github /> More on GitHub
+          </a>
         </div>
       </div>
 

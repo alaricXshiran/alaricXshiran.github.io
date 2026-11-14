@@ -1,98 +1,116 @@
 import { useEffect, useState } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
+import { Linkedin, Github, EnvelopeFill, Download } from "react-bootstrap-icons";
 import logo from "../assets/img/logo.svg";
-import navIcon1 from "../assets/img/nav-icon1.svg";
-import navIcon2 from "../assets/img/nav-icon2.svg";
-import navIcon3 from "../assets/img/nav-icon3.svg";
-import downIcon from "../assets/img/down-icon.svg";
-import resumeFile from "../assets/docs/Alaric_Resume.pdf"; // Adjust the path to your resume file
+import resumeFile from "../assets/docs/Alaric_Resume.pdf";
+import { profile } from "../data";
+
+const links = [
+  { id: "home", label: "Home" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "skills", label: "Skills" },
+  { id: "about", label: "About" },
+];
 
 export const NavBar = () => {
   const [activeLink, setActiveLink] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
+      setScrolled(window.scrollY > 50);
+
+      // Highlight the link for the section currently on screen
+      let current = "home";
+      for (const { id } of links) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 120) current = id;
       }
+      setActiveLink(current);
     };
     window.addEventListener("scroll", onScroll);
+    onScroll();
 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const onUpdateActiveLink = (value) => {
-    setActiveLink(value);
+  const goToContact = () => {
+    setExpanded(false);
+    document.getElementById("connect")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
+    <Navbar
+      expand="lg"
+      expanded={expanded}
+      onToggle={setExpanded}
+      className={scrolled || expanded ? "scrolled" : ""}
+    >
       <Container>
-        <Navbar.Brand href="/">
-          <img src={logo} alt="Logo" />
+        <Navbar.Brand href="#home">
+          <img src={logo} alt="Alaric Shiran logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav">
           <span className="navbar-toggler-icon"></span>
         </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link
-              href="#home"
-              className={
-                activeLink === "home" ? "active navbar-link" : "navbar-link"
-              }
-              onClick={() => onUpdateActiveLink("home")}
-            >
-              Home
-            </Nav.Link>
-            <Nav.Link
-              href="#projects"
-              className={
-                activeLink === "projects" ? "active navbar-link" : "navbar-link"
-              }
-              onClick={() => onUpdateActiveLink("projects")}
-            >
-              Projects
-            </Nav.Link>
-            <Nav.Link
-              href="#skills"
-              className={
-                activeLink === "skills" ? "active navbar-link" : "navbar-link"
-              }
-              onClick={() => onUpdateActiveLink("skills")}
-            >
-              Skills
-            </Nav.Link>
-            <Nav.Link
-              href="#other"
-              className={
-                activeLink === "other" ? "active navbar-link" : "navbar-link"
-              }
-              onClick={() => onUpdateActiveLink("other")}
-            >
-              Other
-            </Nav.Link>
+            {links.map(({ id, label }) => (
+              <Nav.Link
+                key={id}
+                href={`#${id}`}
+                className={
+                  activeLink === id ? "active navbar-link" : "navbar-link"
+                }
+                onClick={() => {
+                  setActiveLink(id);
+                  setExpanded(false);
+                }}
+              >
+                {label}
+              </Nav.Link>
+            ))}
           </Nav>
           <span className="navbar-text">
             <div className="social-icon">
-              <a href="#">
-                <img src={navIcon1} alt="Social Icon 1" />
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                title="LinkedIn"
+              >
+                <Linkedin />
               </a>
-              <a href="#">
-                <img src={navIcon2} alt="Social Icon 2" />
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                title="GitHub"
+              >
+                <Github />
               </a>
-              <a href="#">
-                <img src={navIcon3} alt="Social Icon 3" />
+              <a
+                href={`mailto:${profile.email}`}
+                aria-label="Email"
+                title="Email"
+              >
+                <EnvelopeFill />
               </a>
-              <a href={resumeFile}>
-                <img src={downIcon} alt="CV" />
+              <a
+                href={resumeFile}
+                download="Alaric_Shiran_CV.pdf"
+                aria-label="Download CV"
+                title="Download CV"
+              >
+                <Download />
               </a>
             </div>
-            <button className="vvd" onClick={() => console.log("connect")}>
-              <span>Looking To Connect?</span>
+            <button className="vvd" onClick={goToContact}>
+              <span>Let&apos;s Connect</span>
             </button>
           </span>
         </Navbar.Collapse>
