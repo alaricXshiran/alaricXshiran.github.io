@@ -2,16 +2,19 @@
 @font-face {
 	font-family: Centra;
 	src: url('./assets/font/CentraNo2-Bold.ttf');
+	font-display: swap;
 	font-weight: 700;
 }
 @font-face {
 	font-family: Centra;
 	src: url('./assets/font/CentraNo2-Medium.ttf');
+	font-display: swap;
 	font-weight: 500;
 }
 @font-face {
 	font-family: Centra;
 	src: url('./assets/font/CentraNo2-Book.ttf');
+	font-display: swap;
 	font-weight: 400;
 }
 
@@ -31,8 +34,8 @@ body {
   font-weight: 400;
   overflow-x: hidden;
   position: relative;
-  background-color: #121212 !important;
-  color: #fff !important;
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
   font-family: 'Centra', sans-serif !important;
 }
 
@@ -92,14 +95,14 @@ nav.navbar {
 }
 nav.navbar.scrolled {
   padding: 0px 0;
-  background-color: #121212;
+  background-color: var(--bg);
 }
 nav.navbar a.navbar-brand {
     width: 9%;
 }
 nav.navbar .navbar-nav .nav-link.navbar-link {
   font-weight: 400;
-  color: #fff !important;
+  color: var(--nav-fg) !important;
   letter-spacing: 0.8px;
   padding: 0 25px;
   font-size: 18px;
@@ -120,21 +123,21 @@ span.navbar-text {
 .social-icon a {
     width: 42px;
     height: 42px;
-    background: rgba(217, 217, 217, 0.1);
+    background: var(--icon-bg);
     display: inline-flex;
     border-radius: 50%;
     margin-right: 6px;
     align-items: center;
     justify-content: center;
     line-height: 1;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--icon-border);
 }
 .social-icon a::before {
     content: "";
     width: 42px;
     height: 42px;
     position: absolute;
-    background-color: #ffffff;
+    background-color: var(--icon-fg);
     border-radius: 50%;
     transform: scale(0);
 	transition: 0.3s ease-in-out;
@@ -150,10 +153,10 @@ span.navbar-text {
 .social-icon a:hover img {
 	filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rotate(346deg) brightness(95%) contrast(86%);
 }
-.navbar-text button {
+.navbar-text button.vvd {
   font-weight: 700;
-  color: #fff;
-  border: 1px solid #fff;
+  color: var(--nav-fg);
+  border: 1px solid var(--nav-fg);
   padding: 18px 34px;
   font-size: 18px;
   margin-left: 18px;
@@ -161,24 +164,24 @@ span.navbar-text {
 	background-color: transparent;
 	transition: 0.3s ease-in-out;
 }
-.navbar-text button span {
+.navbar-text button.vvd span {
   z-index: 1;
 }
-.navbar-text button::before {
+.navbar-text button.vvd::before {
   content: "";
   width: 0%;
   height: 100%;
   position: absolute;
-  background-color: #fff;
+  background-color: var(--nav-fg);
   left: 0;
   top: 0;
   z-index: -1;
   transition: 0.3s ease-in-out;
 }
-.navbar-text button:hover {
-  color: #121212;
+.navbar-text button.vvd:hover {
+  color: var(--nav-hover);
 }
-.navbar-text button:hover::before {
+.navbar-text button.vvd:hover::before {
 	content: "";
 	width: 100%;
 	height: 100%;
@@ -194,19 +197,19 @@ nav.navbar .navbar-toggler-icon {
   height: 17px;
   background-image: none;
   position: relative;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid var(--nav-fg);
   transition: all 300ms linear;
   top: -2px;
 }
 nav.navbar .navbar-toggler-icon:focus {
-	border-bottom: 2px solid #fff;
+	border-bottom: 2px solid var(--nav-fg);
 }
 nav.navbar .navbar-toggler-icon:after,
 nav.navbar .navbar-toggler-icon:before {
 	width: 24px;
 	position: absolute;
 	height: 2px;
-	background-color: #fff;
+	background-color: var(--nav-fg);
 	top: 0;
 	left: 0;
 	content: '';
@@ -218,12 +221,12 @@ nav.navbar .navbar-toggler-icon:after {
 }
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
 	transform: rotate(45deg);
-	background-color: #fff;
+	background-color: var(--nav-fg);
 	height: 2px;
 }
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
 	transform: translateY(8px) rotate(-45deg);
-	background-color: #fff;
+	background-color: var(--nav-fg);
 	height: 2px;
 }
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
@@ -235,7 +238,9 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .banner {
   margin-top: 0;
   padding: 260px 0 100px 0;
-  background-image: url('./assets/img/banner-bg.png');
+  color: #fff;
+  background-color: #1b1230;
+  background-image: linear-gradient(rgba(10, 8, 20, 0.35), rgba(10, 8, 20, 0.35)), url('./assets/img/banner-bg.webp');
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -421,7 +426,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 /************ Navbar icons and mobile menu ************/
 .social-icon a {
   position: relative;
-  color: #fff;
+  color: var(--icon-fg);
 }
 
 .social-icon a svg {
@@ -433,7 +438,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .social-icon a:hover svg {
-  color: #121212;
+  color: var(--icon-hover);
 }
 
 nav.navbar a.navbar-brand {
@@ -445,7 +450,7 @@ nav.navbar a.navbar-brand {
     padding: 0 14px;
     font-size: 16px;
   }
-  .navbar-text button {
+  .navbar-text button.vvd {
     padding: 14px 22px;
     font-size: 16px;
   }
@@ -470,7 +475,7 @@ nav.navbar a.navbar-brand {
   .social-icon {
     margin-left: 0;
   }
-  .navbar-text button {
+  .navbar-text button.vvd {
     margin-left: 0;
   }
 }
@@ -489,7 +494,7 @@ nav.navbar a.navbar-brand {
 }
 
 .section-lead {
-  color: #b8b8b8;
+  color: var(--muted);
   font-size: 18px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
@@ -509,9 +514,9 @@ nav.navbar a.navbar-brand {
   letter-spacing: 0.4px;
   padding: 6px 12px;
   border-radius: 999px;
-  color: #e6e6e6;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--chip-text);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
   white-space: nowrap;
 }
 
@@ -522,7 +527,7 @@ nav.navbar a.navbar-brand {
   width: 40%;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.8;
+  opacity: var(--glow-opacity);
 }
 
 .background-img-left {
@@ -539,15 +544,15 @@ nav.navbar a.navbar-brand {
   gap: 10px;
   font-weight: 700;
   font-size: 17px;
-  color: #fff;
+  color: var(--text);
   padding: 14px 28px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border-strong);
   transition: 0.3s ease-in-out;
 }
 
 .outline-btn:hover {
-  background-color: #fff;
-  color: #121212;
+  background-color: var(--text);
+  color: var(--bg);
 }
 
 .section-cta {
@@ -575,8 +580,8 @@ nav.navbar a.navbar-brand {
 
 .timeline-item {
   position: relative;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 18px;
   padding: 28px 30px;
   margin-bottom: 26px;
@@ -594,8 +599,8 @@ nav.navbar a.navbar-brand {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #121212;
-  border: 3px solid #fff;
+  background: var(--bg);
+  border: 3px solid var(--text);
 }
 
 .timeline-head {
@@ -614,7 +619,7 @@ nav.navbar a.navbar-brand {
 }
 
 .timeline-company {
-  color: #b8b8b8;
+  color: var(--muted);
   font-size: 17px;
 }
 
@@ -625,8 +630,9 @@ nav.navbar a.navbar-brand {
   padding: 6px 12px;
   border-radius: 8px;
   white-space: nowrap;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background: linear-gradient(90.21deg, rgba(255, 0, 0, 0.35) -5.91%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 255, 0.35) 111.58%);
+  border: 1px solid var(--badge-border);
+  background: var(--badge-bg);
+  color: #fff;
 }
 
 .timeline-item ul {
@@ -635,7 +641,7 @@ nav.navbar a.navbar-brand {
 }
 
 .timeline-item li {
-  color: #d0d0d0;
+  color: var(--body);
   font-size: 16px;
   line-height: 1.55;
   margin-bottom: 8px;
@@ -651,8 +657,8 @@ nav.navbar a.navbar-brand {
 .project-card {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 18px;
   padding: 28px;
   transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out, background 0.3s ease-in-out;
@@ -660,8 +666,8 @@ nav.navbar a.navbar-brand {
 
 .project-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--border-strong);
+  background: var(--card-hover);
 }
 
 .project-category {
@@ -669,7 +675,7 @@ nav.navbar a.navbar-brand {
   font-weight: 700;
   letter-spacing: 1.4px;
   text-transform: uppercase;
-  color: #9aa0ff;
+  color: var(--accent);
   margin-bottom: 10px;
 }
 
@@ -680,7 +686,7 @@ nav.navbar a.navbar-brand {
 }
 
 .project-card p {
-  color: #c4c4c4;
+  color: var(--body);
   font-size: 16px;
   line-height: 1.55;
   margin-bottom: 20px;
@@ -692,14 +698,14 @@ nav.navbar a.navbar-brand {
   gap: 20px;
   margin-top: 20px;
   padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid var(--border);
 }
 
 .project-links a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #fff;
+  color: var(--text);
   font-weight: 500;
   font-size: 15px;
   opacity: 0.8;
@@ -712,8 +718,8 @@ nav.navbar a.navbar-brand {
 
 /************ Skills ************/
 .skill-bx {
-  background: #151515;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--panel);
+  border: 1px solid var(--border);
   border-radius: 48px;
   padding: 60px 50px;
 }
@@ -738,8 +744,8 @@ nav.navbar a.navbar-brand {
 }
 
 .other-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 18px;
   padding: 28px;
 }
@@ -766,7 +772,7 @@ nav.navbar a.navbar-brand {
 
 .other-entry span,
 .other-row span {
-  color: #b8b8b8;
+  color: var(--muted);
   font-size: 15px;
 }
 
@@ -775,7 +781,7 @@ nav.navbar a.navbar-brand {
   justify-content: space-between;
   gap: 12px;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--border);
 }
 
 .other-row:last-child {
@@ -787,7 +793,7 @@ nav.navbar a.navbar-brand {
 }
 
 .other-card li {
-  color: #d0d0d0;
+  color: var(--body);
   line-height: 1.5;
   margin-bottom: 8px;
 }
@@ -796,12 +802,12 @@ nav.navbar a.navbar-brand {
 .contact-box {
   border-radius: 48px;
   padding: 60px 50px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: linear-gradient(90.21deg, rgba(255, 0, 0, 0.28) -5.91%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 255, 0.28) 111.58%);
+  border: 1px solid var(--contact-border);
+  background: var(--contact-bg);
 }
 
 .contact-box .section-lead {
-  color: #e2e2e2;
+  color: var(--contact-lead);
 }
 
 .contact-grid {
@@ -818,16 +824,16 @@ nav.navbar a.navbar-brand {
   gap: 16px;
   padding: 18px 20px;
   border-radius: 16px;
-  color: #fff;
-  background: rgba(18, 18, 18, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text);
+  background: var(--contact-item);
+  border: 1px solid var(--border);
   transition: 0.3s ease-in-out;
   min-width: 0;
 }
 
 a.contact-item:hover {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.6);
+  color: var(--text);
+  border-color: var(--border-strong);
   transform: translateY(-3px);
 }
 
@@ -839,8 +845,8 @@ a.contact-item:hover {
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: var(--icon-bg-theme);
+  border: 1px solid var(--border-strong);
 }
 
 .contact-text {
@@ -850,7 +856,7 @@ a.contact-item:hover {
 }
 
 .contact-text small {
-  color: #b8b8b8;
+  color: var(--muted);
   font-size: 13px;
   letter-spacing: 0.8px;
   text-transform: uppercase;
@@ -865,7 +871,7 @@ a.contact-item:hover {
 /************ Footer ************/
 .footer {
   padding: 34px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--border);
 }
 
 .footer-inner {
@@ -877,7 +883,7 @@ a.contact-item:hover {
 }
 
 .footer p {
-  color: #b8b8b8;
+  color: var(--muted);
   font-size: 15px;
   letter-spacing: 0.5px;
 }
@@ -968,3 +974,129 @@ a.contact-item:hover {
     border-right: 0;
   }
 }
+
+/************ Theme colours ************/
+:root {
+  color-scheme: dark;
+  --bg: #121212;
+  --text: #ffffff;
+  --muted: #b8b8b8;
+  --body: #d0d0d0;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-hover: rgba(255, 255, 255, 0.07);
+  --card-shadow: none;
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.5);
+  --panel: #151515;
+  --accent: #9aa0ff;
+  --chip-text: #e6e6e6;
+  --chip-bg: rgba(255, 255, 255, 0.06);
+  --chip-border: rgba(255, 255, 255, 0.16);
+  --icon-bg-theme: rgba(217, 217, 217, 0.1);
+  --badge-bg: linear-gradient(90.21deg, rgba(255, 0, 0, 0.35) -5.91%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 255, 0.35) 111.58%);
+  --badge-border: rgba(255, 255, 255, 0.4);
+  --contact-bg: linear-gradient(90.21deg, rgba(255, 0, 0, 0.28) -5.91%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 255, 0.28) 111.58%);
+  --contact-border: rgba(255, 255, 255, 0.25);
+  --contact-lead: #e2e2e2;
+  --contact-item: rgba(18, 18, 18, 0.55);
+  --glow-opacity: 0.8;
+
+  /* Icons and buttons follow the theme by default */
+  --icon-fg: var(--text);
+  --icon-hover: var(--bg);
+  --icon-bg: var(--icon-bg-theme);
+  --icon-border: var(--border-strong);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f5f5f7;
+  --text: #17171c;
+  --muted: #5b5b68;
+  --body: #3b3b45;
+  --card: #ffffff;
+  --card-hover: #ffffff;
+  --card-shadow: 0 8px 26px rgba(20, 20, 40, 0.07);
+  --border: rgba(0, 0, 0, 0.12);
+  --border-strong: rgba(0, 0, 0, 0.45);
+  --panel: #ffffff;
+  --accent: #3d41c9;
+  --chip-text: #2b2b34;
+  --chip-bg: rgba(0, 0, 0, 0.04);
+  --chip-border: rgba(0, 0, 0, 0.15);
+  --icon-bg-theme: rgba(0, 0, 0, 0.05);
+  --badge-bg: linear-gradient(90.21deg, #b3261e -5.91%, #26262e 50%, #2b2bd1 111.58%);
+  --badge-border: transparent;
+  --contact-bg: linear-gradient(90.21deg, rgba(255, 0, 0, 0.14) -5.91%, rgba(255, 255, 255, 0.75) 50%, rgba(0, 0, 255, 0.14) 111.58%);
+  --contact-border: rgba(0, 0, 0, 0.18);
+  --contact-lead: #3b3b45;
+  --contact-item: rgba(255, 255, 255, 0.8);
+  --glow-opacity: 0.3;
+}
+
+/* The navbar sits on the banner image until you scroll, so it stays white there */
+nav.navbar {
+  --nav-fg: #ffffff;
+  --nav-hover: #121212;
+  --icon-fg: #ffffff;
+  --icon-hover: #121212;
+  --icon-bg: rgba(217, 217, 217, 0.1);
+  --icon-border: rgba(255, 255, 255, 0.5);
+}
+
+nav.navbar.scrolled {
+  --nav-fg: var(--text);
+  --nav-hover: var(--bg);
+  --icon-fg: var(--text);
+  --icon-hover: var(--bg);
+  --icon-bg: var(--icon-bg-theme);
+  --icon-border: var(--border-strong);
+}
+
+:root[data-theme="light"] nav.navbar.scrolled {
+  box-shadow: 0 2px 16px rgba(20, 20, 40, 0.08);
+}
+
+:root[data-theme="light"] nav.navbar.scrolled .navbar-brand img {
+  filter: brightness(0.55) saturate(1.6);
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: top;
+  margin-right: 6px;
+  font-size: 17px;
+  line-height: 1;
+  color: var(--icon-fg);
+  background: var(--icon-bg);
+  border: 1px solid var(--icon-border);
+  transition: 0.3s ease-in-out;
+}
+
+.theme-toggle:hover {
+  background: var(--icon-fg);
+  color: var(--icon-hover);
+}
+
+.timeline-item,
+.project-card,
+.other-card,
+.skill-bx {
+  box-shadow: var(--card-shadow);
+}
+
+@media (max-width: 767px) {
+  .banner {
+    background-image: linear-gradient(rgba(10, 8, 20, 0.35), rgba(10, 8, 20, 0.35)), url('./assets/img/banner-bg-sm.webp');
+  }
+}
+

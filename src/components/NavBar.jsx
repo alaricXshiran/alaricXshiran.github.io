@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { Linkedin, Github, EnvelopeFill, Download } from "react-bootstrap-icons";
+import {
+  Linkedin,
+  Github,
+  EnvelopeFill,
+  Download,
+  SunFill,
+  MoonStarsFill,
+} from "react-bootstrap-icons";
 import logo from "../assets/img/logo.svg";
 import resumeFile from "../assets/docs/Alaric_Resume.pdf";
 import { profile } from "../data";
+import { getInitialTheme, applyTheme } from "../theme";
 
 const links = [
   { id: "home", label: "Home" },
@@ -17,6 +25,11 @@ export const NavBar = () => {
   const [activeLink, setActiveLink] = useState("home");
   const [scrolled, setScrolled] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [theme, setTheme] = useState(getInitialTheme);
+
+  useEffect(() => {
+    applyTheme(theme);
+  }, [theme]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -108,6 +121,19 @@ export const NavBar = () => {
               >
                 <Download />
               </a>
+              <button
+                type="button"
+                className="theme-toggle"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                aria-label={
+                  theme === "dark"
+                    ? "Switch to light mode"
+                    : "Switch to dark mode"
+                }
+                title={theme === "dark" ? "Light mode" : "Dark mode"}
+              >
+                {theme === "dark" ? <SunFill /> : <MoonStarsFill />}
+              </button>
             </div>
             <button className="vvd" onClick={goToContact}>
               <span>Let&apos;s Connect</span>

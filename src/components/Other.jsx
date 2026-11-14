@@ -1,4 +1,4 @@
-import colorSharp2 from "../assets/img/color-sharp2.png";
+import colorSharp2 from "../assets/img/color-sharp2.webp";
 import { education, languages, interests, strengths } from "../data";
 
 export const Other = () => {
@@ -51,7 +51,7 @@ export const Other = () => {
         </div>
       </div>
 
-      <img className="background-img-right" src={colorSharp2} alt="" />
+      <img className="background-img-right" src={colorSharp2} alt="" loading="lazy" />
     </section>
   );
 };

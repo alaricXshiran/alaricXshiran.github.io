@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { ArrowRightCircle, Download } from "react-bootstrap-icons";
-import headerImg from "../assets/img/header-img.svg";
+import headerImg from "../assets/img/header-img.webp";
 import resumeFile from "../assets/docs/Alaric_Resume.pdf";
 import { profile } from "../data";
 
@@ -39,7 +39,7 @@ export const Banner = () => {
             </div>
           </Col>
           <Col xs={12} md={6} xl={5}>
-            <img src={headerImg} alt="" />
+            <img src={headerImg} alt="" width="800" height="800" />
           </Col>
         </Row>
       </Container>

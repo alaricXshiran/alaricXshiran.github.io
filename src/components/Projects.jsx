@@ -1,5 +1,5 @@
 import { Github, BoxArrowUpRight } from "react-bootstrap-icons";
-import colorSharp from "../assets/img/color-sharp.png";
+import colorSharp from "../assets/img/color-sharp.webp";
 import { projects, profile } from "../data";
 
 export const Projects = () => {
@@ -55,7 +55,7 @@ export const Projects = () => {
         </div>
       </div>
 
-      <img className="background-img-left" src={colorSharp} alt="" />
+      <img className="background-img-left" src={colorSharp} alt="" loading="lazy" />
     </section>
   );
 };
