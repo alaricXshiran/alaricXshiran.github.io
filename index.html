@@ -1,13 +1,28 @@
 <!doctype html>
 <html lang="en">
   <head>
-  
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./src/assets/img/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Personal-Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Alaric Shiran, a software engineer and IT technician in Colombo, Sri Lanka. Full stack web development, embedded and IoT projects, and technical support."
+    />
+    <title>Alaric Shiran | Software Engineer &amp; IT Technician</title>
   </head>
   <body>
+    <script>
+      // Apply the saved theme before the page paints, to avoid a flash
+      try {
+        var t = localStorage.getItem("theme");
+        document.documentElement.setAttribute(
+          "data-theme",
+          t === "light" ? "light" : "dark"
+        );
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
