@@ -282,7 +282,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   line-height: 1;
   margin-bottom: 20px;
   display: block;
-  animation: fadeIn 2s ease-out forwards;
+  animation: revealUp 0.7s ease 0.1s backwards;
 }
   
 
@@ -291,7 +291,9 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   border-right: 2px solid var(--text); /* Simulates a typing cursor */
   white-space: nowrap;
   overflow: hidden;
-  animation: typing 3.5s steps(40, end), blinkCursor 0.75s step-end infinite;
+  min-height: 1em;
+  vertical-align: bottom;
+  animation: blinkCursor 0.75s step-end infinite;
 }
 
 @keyframes fadeIn {
@@ -327,9 +329,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   letter-spacing: 0.8px;
   line-height: 1.5em;
   width: 96%;
-  opacity: 0;
-  transform: translateY(20px); /* Slight upward motion */
-  animation: fadeInP 2s ease-out 2.5s forwards; /* Delay the animation by 2.5s */
+  animation: revealUp 0.7s ease 0.25s backwards;
 }
 
 @keyframes fadeInP {
@@ -363,9 +363,6 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   margin-left: 25px;
 }
 
-.banner img {
-  animation: updown 4s linear infinite;
-}
 
 @keyframes updown {
   0% {
@@ -981,6 +978,8 @@ a.contact-item:hover {
   .banner h1,
   .banner p,
   .banner img,
+  .banner .tagline,
+  .banner .buttons,
   .wrap {
     animation: none;
     opacity: 1;
@@ -990,6 +989,91 @@ a.contact-item:hover {
     width: auto;
     border-right: 0;
   }
+  .scroll-progress {
+    display: none;
+  }
+}
+
+/************ Animations ************/
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes artIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Banner entrance, one piece after another */
+.banner .tagline {
+  animation: revealUp 0.7s ease backwards;
+}
+
+.banner .buttons {
+  animation: revealUp 0.7s ease 0.4s backwards;
+}
+
+/* The typed role sits on its own line so the heading doesn't jump around */
+.wrap-line {
+  display: block;
+  min-height: 1.05em;
+}
+
+.wrap-static {
+  border-right: 0;
+  animation: none;
+}
+
+/* Scroll reveal: hidden only once the script has started (see reveal.js) */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+}
+
+.reveal-ready [data-reveal].is-visible {
+  opacity: 1;
+  animation: revealUp 0.55s ease backwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, #ff3c3c, #4646ff);
 }
 
 /************ Theme colours ************/
@@ -1110,3 +1194,12 @@ body {
   }
 }
 
+
+.wrap-line .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}

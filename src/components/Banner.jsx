@@ -1,19 +1,19 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { ArrowRightCircle, Download } from "react-bootstrap-icons";
-import headerImg from "../assets/img/header-img.webp";
 import resumeFile from "../assets/docs/Alaric_Resume.pdf";
 import { profile } from "../data";
+import { TypedRoles } from "./TypedRoles";
 
 export const Banner = () => {
   return (
     <section className="banner" id="home">
       <Container>
         <Row className="align-items-center">
-          <Col xs={12} md={6} xl={7}>
+          <Col xs={12} lg={9} xl={8}>
             <span className="tagline">{profile.roles.join(" · ")}</span>
             <h1>
               {`Hi! I'm Alaric `}
-              <span className="wrap">Software Engineer</span>
+              <TypedRoles roles={profile.roles} />
             </h1>
             <p className="type-p">
               I&apos;m a Software Engineering graduate from the University of
@@ -37,9 +37,6 @@ export const Banner = () => {
                 <Download size={20} />
               </a>
             </div>
-          </Col>
-          <Col xs={12} md={6} xl={5}>
-            <img src={headerImg} alt="" width="800" height="800" />
           </Col>
         </Row>
       </Container>

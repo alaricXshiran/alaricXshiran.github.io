@@ -36,7 +36,7 @@ export const Contact = () => {
   return (
     <section className="section contact" id="connect">
       <div className="container">
-        <div className="contact-box">
+        <div className="contact-box" data-reveal="">
           <h2>Let&apos;s Connect</h2>
           <p className="section-lead">
             I&apos;m open to software engineering, IT technician and technical

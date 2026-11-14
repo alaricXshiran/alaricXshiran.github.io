@@ -1,17 +1,22 @@
 import { experience } from "../data";
+import { stagger } from "../reveal";
 
 export const Experience = () => {
   return (
     <section className="section experience" id="experience">
       <div className="container">
-        <h2>Experience</h2>
-        <p className="section-lead">
+        <h2 data-reveal="">Experience</h2>
+        <p className="section-lead" data-reveal="">
           Where I&apos;ve worked and what I did there.
         </p>
 
         <div className="timeline">
-          {experience.map((job) => (
-            <article className="timeline-item" key={job.role + job.company}>
+          {experience.map((job, i) => (
+            <article
+              className="timeline-item"
+              key={job.role + job.company}
+              {...stagger(i, 120, 99)}
+            >
               <div className="timeline-head">
                 <div>
                   <h3>{job.role}</h3>
