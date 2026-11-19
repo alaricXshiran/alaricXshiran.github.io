@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { ArrowRightCircle, Download } from "react-bootstrap-icons";
-import resumeFile from "../assets/docs/Alaric_Resume.pdf";
+// CV lives in public/, so this URL never changes (the QR code on the CV points here)
+const resumeFile = "/Alaric_Shiran_CV.pdf";
 import { profile } from "../data";
 import { TypedRoles } from "./TypedRoles";
 
