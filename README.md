@@ -1,8 +1,21 @@
-# React + Vite
+<!-- README for my portfolio site: shown on the repo's GitHub page -->
+# Alaric Shiran — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio website: **https://alaricxshiran.github.io/**
 
-Currently, two official plugins are available:
+Software Engineering graduate (University of Plymouth) with experience in full-stack web development, .NET, embedded systems and IT support.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Built with
+- React + Vite
+- React Bootstrap
+- Deployed to GitHub Pages with GitHub Actions
+
+## Run locally
+```bash
+npm install
+npm run dev
+```
+
+## Contact
+- Email: alaric.shiran.private@gmail.com
+- GitHub: [alaricXshiran](https://github.com/alaricXshiran)
